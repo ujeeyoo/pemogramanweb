@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pertemuan1</title>
+</head>
+<body>
+    <header class="wrap"><nav aria-label="Navigasi utama"><a class="brand" href="#top">AM<span>/ PORTFOLIO 2024</span></a><button class="menu-btn" aria-label="Buka menu" aria-expanded="false">☰</button><div class="nav-links"><a href="#work">Karya</a><a href="#about">Tentang</a><a class="nav-cta" href="#contact">Mari ngobrol <span>↗</span></a></div></nav></header>
+    <main id="top">
+        <section class="wrap hero"><div class="reveal"><div class="eyebrow">Digital designer / Creative developer</div><h1>Membuat ide<br>terasa <em>hidup.</em></h1><p class="hero-copy">Saya Aruna, seorang desainer digital yang mengubah strategi, cerita, dan teknologi menjadi pengalaman visual yang berarti.</p><div class="hero-actions"><a class="button" href="#work">Lihat pilihan karya <span class="arrow">↘</span></a><a class="button light" href="#contact">Kenalan <span class="arrow">↗</span></a></div></div><div class="hero-art reveal"><div class="shape"></div><img class="hero-image" src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Meja kerja kreatif dengan sketsa dan alat desain"><div class="stamp"><strong>✳</strong>Available for select projects · 2024</div></div></section>
+        <div class="marquee" aria-hidden="true"><div class="marquee-track">Brand identity · Digital experience · Art direction · Brand identity · Digital experience · Art direction · Brand identity · Digital experience · Art direction ·</div></div>
+        <section class="wrap" id="work"><div class="section-head"><div><div class="eyebrow">01 / Selected work</div><h2>Beberapa hal yang<br><em>pernah saya buat.</em></h2></div><div class="eyebrow">2021—2024</div></div><div class="projects">
+            <article class="project"><div class="project-image"><img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Tampilan website Nusa Studio di laptop"></div><div class="project-meta"><h3 class="project-title">Nusa Studio</h3><div class="project-type">Branding · Web</div></div><p class="project-description">Identitas dan platform digital untuk studio arsitektur yang percaya pada ruang sederhana.</p></article>
+            <article class="project"><div class="project-image"><img src="https://images.unsplash.com/photo-1545235617-9465d2a55698?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Kemasan produk skincare Sora"></div><div class="project-meta"><h3 class="project-title">Sora Objects</h3><div class="project-type">Art direction · Packaging</div></div><p class="project-description">Membawa ritual perawatan diri menjadi sebuah bahasa visual yang tenang dan tactile.</p></article>
+            <article class="project"><div class="project-image"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Perangkat retro dengan layar warna-warni"></div><div class="project-meta"><h3 class="project-title">Play / Pause</h3><div class="project-type">Campaign · Editorial</div></div><p class="project-description">Kampanye editorial tentang nostalgia digital, dibuat untuk generasi yang tumbuh di antara dua zaman.</p></article>
+            <article class="project"><div class="project-image"><img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Instalasi seni dengan cahaya merah muda"></div><div class="project-meta"><h3 class="project-title">Afterglow</h3><div class="project-type">Experience · 3D</div></div><p class="project-description">Identitas ruang untuk pameran seni imersif yang mengeksplorasi cahaya dan memori.</p></article>
+        </div></section>
+        <section class="wrap about" id="about"><div class="eyebrow">02 / A little about me</div><div class="about-copy"><p>Desain yang baik bukan sekadar terlihat bagus. Ia memberi <em>rasa, arah,</em> dan alasan untuk berhenti sejenak.</p><div class="skills"><div class="skill">Art direction <span>01</span></div><div class="skill">Visual identity <span>02</span></div><div class="skill">Web design <span>03</span></div><div class="skill">Creative coding <span>04</span></div></div></div></section>
+        <section class="wrap contact" id="contact"><div class="contact-box"><div><div class="eyebrow" style="color:#aab3a9;">03 / Start a conversation</div><h2>Punya ide<br><em>seru?</em></h2><p class="contact-copy">Ceritakan sedikit tentangnya. Saya akan membalas dalam 2—3 hari kerja.</p></div><form class="contact-form" onsubmit="sendMessage(event)"><input type="text" placeholder="Nama kamu" aria-label="Nama kamu" required><input type="email" placeholder="Alamat email" aria-label="Alamat email" required><textarea rows="3" placeholder="Tentang proyeknya..." aria-label="Tentang proyeknya" required></textarea><button class="button" type="submit">Kirim pesan <span class="arrow">↗</span></button></form></div></section>
+    </main>
+    <footer class="wrap"><div>© <span id="year"></span> Aruna Maheswari</div><div class="socials"><a href="mailto:hello@arunam.design">Email</a><a href="#">Instagram</a><a href="#">Behance</a></div></footer>
+    <script>
+        const menuButton = document.querySelector('.menu-btn'); const navLinks = document.querySelector('.nav-links');
+        menuButton.addEventListener('click', () => { const isOpen = navLinks.classList.toggle('open'); menuButton.setAttribute('aria-expanded', isOpen); });
+        navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => navLinks.classList.remove('open')));
+        document.querySelector('#year').textContent = new Date().getFullYear();
+        function sendMessage(event) { event.preventDefault(); const button = event.currentTarget.querySelector('button'); button.innerHTML = 'Pesan terkirim <span class="arrow">✓</span>'; button.style.background = '#cdf05a'; button.style.color = '#18221e'; }
+    </script>
+</body>
+</html>

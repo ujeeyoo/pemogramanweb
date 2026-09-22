@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Payoutly membantu mencairkan saldo PayPal ke bank lokal dan e-wallet dengan kurs transparan.">
+	<title>Payoutly — PayPal ke rupiah, tanpa drama</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			--navy: #111b2f;
+			--navy-2: #182641;
+			--navy-3: #223452;
+			--paper: #f5f7f9;
+			--white: #ffffff;
+			--ink: #162039;
+			--muted: #8490a5;
+			--line: #e5e9ef;
+			--mint: #b8f1d8;
+			--mint-ink: #14644b;
+			--coral: #ff735f;
+			--mono: 'DM Mono', monospace;
+			--sans: 'Plus Jakarta Sans', sans-serif;
+		}
+
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); }
+		button, input, select { font: inherit; }
+		button { cursor: pointer; }
+		a { color: inherit; text-decoration: none; }
+		.app-shell { display: grid; grid-template-columns: 245px 1fr; min-height: 100vh; }
+
+		aside { display: flex; flex-direction: column; padding: 30px 22px; color: #dce5f2; background: var(--navy); }
+		.logo { display: flex; align-items: center; gap: 10px; padding: 0 12px; color: var(--white); font-size: 18px; font-weight: 800; letter-spacing: -.05em; }
+		.logo-mark { display: grid; place-items: center; width: 29px; height: 29px; color: var(--navy); background: var(--mint); border-radius: 9px; font-weight: 800; }
+		.logo small { margin-left: 1px; color: #7c8aa0; font: 500 8px var(--mono); letter-spacing: .02em; }
+		.menu-label { margin: 64px 12px 14px; color: #697994; font: 500 10px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+		.nav { display: grid; gap: 5px; }
+		.nav-link { display: flex; align-items: center; gap: 13px; padding: 12px; color: #91a0b8; border-radius: 10px; font-size: 12px; font-weight: 600; transition: background .2s, color .2s; }
+		.nav-link:hover, .nav-link.active { color: var(--white); background: var(--navy-3); }
+		.nav-icon { display: grid; place-items: center; width: 23px; height: 23px; color: #788ba9; border: 1px solid #536584; border-radius: 7px; font: 11px var(--mono); }
+		.nav-link.active .nav-icon { color: var(--mint); border-color: var(--mint); }
+		.side-note { margin-top: auto; padding: 17px; color: #afbdcf; background: var(--navy-2); border: 1px solid #2b3c59; border-radius: 13px; font-size: 11px; line-height: 1.6; }
+		.side-note strong { display: block; margin-bottom: 8px; color: var(--mint); font-size: 12px; }
+		.profile { display: flex; align-items: center; gap: 10px; margin-top: 26px; padding: 10px 12px; border-top: 1px solid #2b3951; }
+		.avatar { display: grid; place-items: center; width: 31px; height: 31px; color: var(--navy); background: var(--coral); border-radius: 50%; font-size: 10px; font-weight: 800; }
+		.profile div { font-size: 10px; line-height: 1.5; }
+		.profile span { display: block; color: #71819d; font-size: 9px; }
+
+		main { min-width: 0; padding: 31px 45px 45px; }
+		.topbar { display: flex; align-items: center; justify-content: space-between; max-width: 1120px; margin: 0 auto 42px; }
+		.breadcrumb { color: var(--muted); font: 10px var(--mono); text-transform: uppercase; letter-spacing: .07em; }
+		.breadcrumb strong { color: var(--ink); }
+		.top-actions { display: flex; align-items: center; gap: 18px; }
+		.help { color: var(--muted); font-size: 11px; font-weight: 600; }
+		.notification { position: relative; padding: 7px; color: var(--muted); background: none; border: 0; font-size: 17px; }
+		.notification:after { content: ''; position: absolute; top: 6px; right: 6px; width: 5px; height: 5px; background: var(--coral); border: 2px solid var(--paper); border-radius: 50%; }
+		.mobile-menu { display: none; color: var(--ink); background: none; border: 0; font-size: 21px; }
+		.content { max-width: 1120px; margin: auto; }
+		.heading-row { display: flex; justify-content: space-between; align-items: end; margin-bottom: 29px; }
+		.kicker { color: var(--coral); font: 500 10px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+		h1 { margin: 8px 0 0; color: var(--ink); font-size: clamp(28px, 3.4vw, 42px); letter-spacing: -.07em; line-height: 1; }
+		.last-updated { color: var(--muted); font-size: 10px; }
+		.dashboard-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(300px, .85fr); gap: 24px; align-items: start; }
+		.card { background: var(--white); border: 1px solid var(--line); border-radius: 17px; box-shadow: 0 8px 24px rgba(27, 43, 68, .035); }
+		.convert-card { padding: 28px; }
+		.card-heading { display: flex; align-items: center; justify-content: space-between; padding-bottom: 21px; border-bottom: 1px solid var(--line); }
+		.card-heading h2 { margin: 0; font-size: 14px; letter-spacing: -.03em; }
+		.secure { display: flex; align-items: center; gap: 5px; color: var(--mint-ink); font: 10px var(--mono); text-transform: uppercase; }
+		.secure b { width: 6px; height: 6px; background: #45be8c; border-radius: 50%; }
+		.field-label { display: block; margin: 25px 0 9px; color: var(--muted); font-size: 10px; font-weight: 700; }
+		.money-field { display: flex; align-items: center; gap: 12px; padding: 15px 17px; border: 1px solid var(--line); border-radius: 10px; transition: border .2s, box-shadow .2s; }
+		.money-field:focus-within { border-color: var(--coral); box-shadow: 0 0 0 3px rgba(255, 115, 95, .11); }
+		.currency { display: flex; align-items: center; gap: 7px; padding-right: 14px; border-right: 1px solid var(--line); color: var(--muted); font: 11px var(--mono); }
+		.paypal-logo { display: grid; place-items: center; width: 23px; height: 23px; color: var(--white); background: #3e69bb; border-radius: 7px; font-size: 10px; font-weight: 800; }
+		.money-field input { width: 100%; min-width: 0; padding: 0; color: var(--ink); background: transparent; border: 0; outline: 0; font: 700 25px var(--mono); }
+		.money-field input::placeholder { color: #cdd2da; }
+		.rate-row { display: flex; align-items: center; justify-content: space-between; margin: 12px 1px 0; color: var(--muted); font-size: 10px; }
+		.rate-row strong { color: var(--ink); font: 500 10px var(--mono); }
+		.destination-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+		.destination { position: relative; display: flex; align-items: center; gap: 10px; padding: 12px; color: var(--ink); background: var(--white); border: 1px solid var(--line); border-radius: 10px; font-size: 11px; font-weight: 700; text-align: left; transition: border .2s, background .2s; }
+		.destination:hover, .destination.selected { border-color: var(--coral); background: #fff8f6; }
+		.destination.selected:after { content: '✓'; position: absolute; top: 8px; right: 9px; color: var(--coral); font: 700 10px var(--mono); }
+		.wallet-logo { display: grid; place-items: center; width: 25px; height: 25px; color: var(--white); border-radius: 8px; font: 700 9px var(--mono); }
+		.bca { background: #2d5b99; } .gopay { background: #21a9e2; } .dana { background: #318fda; } .ovo { background: #554098; }
+		.destination span small { display: block; margin-top: 3px; color: var(--muted); font-size: 9px; font-weight: 500; }
+		.input-with-prefix { display: flex; align-items: center; gap: 8px; padding: 14px 15px; border: 1px solid var(--line); border-radius: 10px; }
+		.input-with-prefix span { color: var(--muted); font: 13px var(--mono); }
+		.input-with-prefix input { width: 100%; padding: 0; border: 0; outline: 0; font: 600 13px var(--mono); }
+		.summary { display: grid; gap: 10px; margin-top: 25px; padding: 17px; background: var(--navy); border-radius: 11px; }
+		.summary-line { display: flex; justify-content: space-between; color: #a9b5c9; font-size: 10px; }
+		.summary-line strong { color: #eef3f9; font: 500 10px var(--mono); }
+		.summary-total { display: flex; justify-content: space-between; align-items: end; padding-top: 13px; margin-top: 3px; border-top: 1px solid #31435f; }
+		.summary-total span { color: var(--mint); font-size: 10px; font-weight: 700; }
+		.summary-total strong { color: var(--white); font: 700 22px var(--mono); }
+		.primary-btn { display: flex; justify-content: center; align-items: center; width: 100%; gap: 9px; margin-top: 14px; padding: 15px; color: var(--navy); background: var(--mint); border: 0; border-radius: 10px; font-size: 11px; font-weight: 800; transition: transform .2s, background .2s; }
+		.primary-btn:hover { background: #a1e9c8; transform: translateY(-2px); }
+		.side-column { display: grid; gap: 24px; }
+		.balance-card { padding: 24px; color: var(--white); background: var(--navy); }
+		.balance-top { display: flex; justify-content: space-between; color: #9eacc0; font-size: 10px; }
+		.balance-amount { margin: 22px 0 6px; font: 700 32px var(--mono); letter-spacing: -.07em; }
+		.balance-sub { color: #8f9db2; font-size: 10px; }
+		.balance-sub strong { color: var(--mint); }
+		.mini-chart { display: flex; align-items: end; gap: 6px; height: 56px; margin-top: 27px; padding-top: 8px; border-top: 1px solid #2b3c59; }
+		.bar { flex: 1; background: #39516f; border-radius: 3px 3px 0 0; }
+		.bar.highlight { background: var(--coral); }
+		.activity-card { padding: 24px; }
+		.activity-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 17px; }
+		.activity-head h2 { margin: 0; font-size: 13px; letter-spacing: -.03em; }
+		.view-all { color: var(--coral); font: 10px var(--mono); }
+		.activity { display: flex; align-items: center; gap: 11px; padding: 12px 0; border-top: 1px solid var(--line); }
+		.activity-icon { display: grid; place-items: center; width: 29px; height: 29px; border-radius: 8px; font: 9px var(--mono); }
+		.activity-icon.green { color: var(--mint-ink); background: #e8faf1; } .activity-icon.yellow { color: #9b7213; background: #fff7d9; }
+		.activity-info { flex: 1; min-width: 0; font-size: 10px; font-weight: 700; }
+		.activity-info span { display: block; margin-top: 4px; color: var(--muted); font-size: 9px; font-weight: 500; }
+		.activity-amount { text-align: right; font: 500 10px var(--mono); }
+		.activity-amount span { display: block; margin-top: 4px; color: #47ad7d; font: 9px var(--sans); }
+		.footer-note { margin-top: 26px; color: var(--muted); text-align: center; font-size: 10px; }
+		.footer-note a { color: var(--coral); font-weight: 700; }
+
+		@media (max-width: 930px) { .app-shell { grid-template-columns: 70px 1fr; } aside { padding: 25px 10px; } .logo { justify-content: center; padding: 0; } .logo span, .logo small, .menu-label, .nav-link span, .side-note, .profile div { display: none; } .nav { margin-top: 53px; } .nav-link { justify-content: center; } .profile { justify-content: center; padding: 14px 0; } main { padding-inline: 28px; } }
+		@media (max-width: 680px) { .app-shell { display: block; } aside { display: block; height: auto; padding: 16px 20px; } .logo { justify-content: flex-start; } .logo span, .logo small { display: inline; } .nav, .menu-label, .side-note, .profile { display: none; } main { padding: 24px 18px 35px; } .topbar { margin-bottom: 33px; } .help { display: none; } .mobile-menu { display: block; } .heading-row { display: block; } .last-updated { display: block; margin-top: 14px; } .dashboard-grid { display: block; } .side-column { margin-top: 20px; } .convert-card { padding: 20px; } .destination-grid { gap: 8px; } .destination { padding: 10px 8px; } .destination span { font-size: 10px; } .balance-card, .activity-card { padding: 20px; } }
+	</style>
+</head>
+<body>
+	<div class="app-shell">
+		<aside>
+			<a class="logo" href="#"><span class="logo-mark">P</span><span>Payoutly</span><small>BETA</small></a>
+			<div class="menu-label">Workspace</div>
+			<nav class="nav" aria-label="Menu utama">
+				<a class="nav-link active" href="#convert"><b class="nav-icon">↗</b><span>Convert saldo</span></a>
+				<a class="nav-link" href="#activity"><b class="nav-icon">⌁</b><span>Aktivitas</span></a>
+				<a class="nav-link" href="#beneficiaries"><b class="nav-icon">+</b><span>Penerima</span></a>
+			</nav>
+			<div class="menu-label">Account</div>
+			<nav class="nav">
+				<a class="nav-link" href="#settings"><b class="nav-icon">⚙</b><span>Pengaturan</span></a>
+				<a class="nav-link" href="#help"><b class="nav-icon">?</b><span>Pusat bantuan</span></a>
+			</nav>
+			<div class="side-note"><strong>Butuh bantuan?</strong>Tim support kami siap membantu setiap hari, pukul 09.00—21.00 WIB.<br><br><a href="#help">Buka pusat bantuan →</a></div>
+			<div class="profile"><div class="avatar">AN</div><div>Andi Nugraha<span>Personal account</span></div></div>
+		</aside>
+		<main>
+			<div class="topbar"><div class="breadcrumb">Workspace <strong>/ Convert saldo</strong></div><div class="top-actions"><a class="help" href="#help">Pusat bantuan</a><button class="notification" aria-label="Notifikasi">♧</button><button class="mobile-menu" aria-label="Buka menu">☰</button></div></div>
+			<div class="content">
+				<div class="heading-row"><div><div class="kicker">Quick payout</div><h1>Ubah saldo jadi rupiah.</h1></div><div class="last-updated">Kurs diperbarui 2 menit lalu · <strong>Live</strong></div></div>
+				<div class="dashboard-grid">
+					<section class="card convert-card" id="convert">
+						<div class="card-heading"><h2>Berapa yang mau dicairkan?</h2><div class="secure"><b></b> Secure payout</div></div>
+						<label class="field-label" for="amount">Saldo PayPal</label>
+						<div class="money-field"><div class="currency"><span class="paypal-logo">P</span> USD</div><input id="amount" type="number" value="250" min="1" aria-label="Jumlah saldo PayPal"></div>
+						<div class="rate-row"><span>1 USD</span><strong>≈ Rp 18.420</strong><span>Kurs real-time ↗</span></div>
+						<label class="field-label" id="beneficiaries">Kirim ke mana?</label>
+						<div class="destination-grid"><button class="destination selected" data-name="BCA"><b class="wallet-logo bca">BCA</b><span>BCA<small>•••• 2190</small></span></button><button class="destination" data-name="GoPay"><b class="wallet-logo gopay">G</b><span>GoPay<small>•••• 8801</small></span></button><button class="destination" data-name="DANA"><b class="wallet-logo dana">D</b><span>DANA<small>•••• 4421</small></span></button><button class="destination" data-name="OVO"><b class="wallet-logo ovo">O</b><span>OVO<small>•••• 1390</small></span></button></div>
+						<label class="field-label" for="account">Nomor rekening / e-wallet</label><div class="input-with-prefix"><span id="prefix">BCA</span><input id="account" type="text" value="0219 0808 2190" aria-label="Nomor rekening atau e-wallet"></div>
+						<div class="summary"><div class="summary-line"><span>Saldo dicairkan</span><strong id="summary-usd">$250.00</strong></div><div class="summary-line"><span>Biaya layanan</span><strong>-$2.50</strong></div><div class="summary-line"><span>Estimasi tiba</span><strong>5—15 menit</strong></div><div class="summary-total"><span>Anda menerima</span><strong id="summary-idr">Rp 4.064.350</strong></div></div>
+						<button class="primary-btn" id="payout-button">Lanjutkan pencairan <span>→</span></button>
+					</section>
+					<div class="side-column">
+						<section class="card balance-card"><div class="balance-top"><span>Total saldo PayPal</span><span>•••</span></div><div class="balance-amount">$100,284.90</div><div class="balance-sub"><strong>+$3020.40</strong> dari bulan lalu</div><div class="mini-chart"><i class="bar" style="height:35%"></i><i class="bar" style="height:50%"></i><i class="bar" style="height:42%"></i><i class="bar" style="height:69%"></i><i class="bar" style="height:57%"></i><i class="bar" style="height:82%"></i><i class="bar highlight" style="height:100%"></i></div></section>
+						<section class="card activity-card" id="activity"><div class="activity-head"><h2>Aktivitas terbaru</h2><a class="view-all" href="#activity">Lihat semua</a></div><div class="activity"><div class="activity-icon green">✓</div><div class="activity-info">Pencairan ke BCA<span>Hari ini, 10:42</span></div><div class="activity-amount">Rp 2.432.770<span>Selesai</span></div></div><div class="activity"><div class="activity-icon yellow">↗</div><div class="activity-info">Pencairan ke GoPay<span>12 Jun 2024, 16:20</span></div><div class="activity-amount">Rp 820.500<span>Selesai</span></div></div><div class="activity"><div class="activity-icon green">✓</div><div class="activity-info">Pencairan ke DANA<span>08 Jun 2024, 09:15</span></div><div class="activity-amount">Rp 1.644.000<span>Selesai</span></div></div></section>
+					</div>
+				</div>
+				<p class="footer-note">Payoutly memakai enkripsi bank-grade untuk setiap transaksi. <a href="#help">Pelajari keamanan kami →</a></p>
+			</div>
+		</main>
+	</div>
+	<script>
+		const amountInput = document.querySelector('#amount');
+		const destinationButtons = document.querySelectorAll('.destination');
+		const summaryUsd = document.querySelector('#summary-usd');
+		const summaryIdr = document.querySelector('#summary-idr');
+		const prefix = document.querySelector('#prefix');
+		const payoutButton = document.querySelector('#payout-button');
+		const usdRate = 16420;
+		const serviceFee = 2.5;
+
+		function formatRupiah(value) {
+			return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(value).replace('IDR', 'Rp');
+		}
+
+		function updateQuote() {
+			const amount = Math.max(Number(amountInput.value) || 0, 0);
+			const received = Math.max(amount - serviceFee, 0) * usdRate;
+			summaryUsd.textContent = `$${amount.toFixed(2)}`;
+			summaryIdr.textContent = formatRupiah(received);
+		}
+
+		amountInput.addEventListener('input', updateQuote);
+		destinationButtons.forEach(button => {
+			button.addEventListener('click', () => {
+				destinationButtons.forEach(item => item.classList.remove('selected'));
+				button.classList.add('selected');
+				prefix.textContent = button.dataset.name;
+			});
+		});
+		payoutButton.addEventListener('click', () => {
+			payoutButton.innerHTML = 'Quote tersimpan <span>✓</span>';
+			payoutButton.style.background = '#8adbb8';
+			setTimeout(() => { payoutButton.innerHTML = 'Lanjutkan pencairan <span>→</span>'; payoutButton.style.background = ''; }, 2200);
+		});
+	</script>
+</body>
+</html>
