@@ -1,0 +1,61 @@
+/* 2.CSS RESET */
+*{
+    margin: 20;
+    padding: 20;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    color: rgb(15, 15, 15);
+    background-color: white;
+}
+
+/* LAYOUT CONTAINER */
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Header & Nav */
+header {
+    background-color: brown;
+    color: white;
+    padding: 25px 0;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 1);
+}
+
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+header p {
+    font-size: 0.95rem;
+    opacity: 0.5;
+    margin-bottom: 15px;
+}
+
+nav {
+    margin-top:  10px;
+    font-size: 0.95rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 6px 14px;
+    margin: 0 2px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+nav a:hover, nav a.active {
+    background-color: rgba(255, 255, 255, 0.25);
+    font-weight: bold;
+}
