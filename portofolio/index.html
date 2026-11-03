@@ -1,67 +1,121 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontak & Pemesanan - Poliban DigiCraft Studio</title>
-    <style>
-        :root {
-        font-family: "Inter", sans-serif;
+   
 
-        }
-    </style>
 <body>
 
-<link rel="stylesheet" href="style/style.css">
- <header>
-    <div class ="container">
-     <h1>Poliban DigiCraft Studio</h1>
-     <p>Solusi Transformasi Bisnis Digital Anda di Banjarmasin</p>
-     <hr>
-     <nav>
-         <!-- Menu Navigasi Timbal Balik -->
-          <a href="index.html"class="active">Beranda</a> |
-          <a href="tentang.html">Tentang Kami</a> |
-          <a href="produk.html"><b>Katalog Jasa</b></a> |
-          <a href="kontak.html">Kontak & Pemesanan</a>
-      </nav>
+    <link rel="stylesheet" href="style/style.css">
+    <header>
+        <div class="container">
+            <h1>Poliban DigiCraft Studio</h1>
+            <p class="container">Solusi Transformasi Bisnis Digital Anda di Banjarmasin</p>
+            <nav>
+                <!-- Menu Navigasi Timbal Balik -->
+                <a href="index.html" class="active">Beranda</a> |
+                <a href="tentang.html">Tentang Kami</a> |
+                <a href="produk.html"><b>Katalog Jasa</b></a> |
+                <a href="kontak.html">Kontak & Pemesanan</a>
+            </nav>
     </header>
     <nav>
 
-<main>
+        <main class="container">
+            <!-- SEKSI PORTOFOLIO UTAMA (CARD LAYOUT) -->
+            <section class="section">
+                <h2 class="section-title">Portofolio Karya Unggulan Kami</h2>
+                <p class="section-subtitle">Beberapa proyek digital yang telah kami selesaikan untuk klien UMKM lokal
+                </p>
+                <div class="card-grid">
+                    <!-- Kartu Portofolio 1 -->
+                    <article class="card">
+                        <img src="5.png" alt="Mockup Desain Landing Page Agensi" class="card-img">
+                        <div class="card-body">
+                            <h3 class="card-title">Landing Page UMKM Lokal</h3>
+                            <p class="card-text">Desain landing page modern, cepat, dan responsif untuk meningkatkan
+                                penjualan produk lokal.</p>
+                        </div>
+                    </article>
 
-    <h2>Selamat Datang di Poliban DigiCraft Studio</h2>
+                    <!-- Kartu Portofolio 2 (Video Profile) -->
+                    <article class="card">
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/UExds0bbfcw?si=t_ux7vf4W2ViIRP1"
+                                title="YouTube video player" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Video Profil Bisnis</h3>
+                            <p class="card-text">Saksikan video pengenalan profil studio dan alur kerja profesional tim
+                                kreatif kami.</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
 
-    <p>
-        Kami menyediakan berbagai layanan kreatif dan digital
-        untuk membantu kebutuhan bisnis dan proyek Anda.
-    </p>
+            <!-- SEKSI KATALOG PAKET LAYANAN (PRICING CARDS) -->
+            <section class="section">
+                <h2 class="section-title">Paket Layanan & Harga Jasa Kreatif</h2>
+                <p class="section-subtitle">Pilih paket layanan terbaik sesuai kebutuhan bisnis digital Anda</p>
+                <div class="card-grid">
+                    <!-- Paket 1: Landing Page Silver -->
+                    <article class="card pricing-card">
+                        <div class="card-body">
+                            <span class="badge">Web Development</span>
+                            <h3 class="card-title">Landing Page Silver</h3>
+                            <p class="card-price">Rp 1.500.000</p>
+                            <ul class="card-features">
+                                <li>1 Halaman Web Responsif</li>
+                                <li>Formulir Kontak Pemesanan</li>
+                                <li>Integrasi Chat WhatsApp</li>
+                            </ul>
+                            <a href="kontak.html" class="btn-primary">Pesan Paket</a>
+                        </div>
+                    </article>
 
-    <h3>Layanan Kami</h3>
+                    <!-- Paket 2: Website Bisnis Gold -->
+                    <article class="card pricing-card featured">
+                        <div class="card-body">
+                            <span class="badge badge-featured">Paling Populer</span>
+                            <h3 class="card-title">Website Bisnis Gold</h3>
+                            <p class="card-price">Rp 3.500.000</p>
+                            <ul class="card-features">
+                                <li>5 Halaman Web Lengkap</li>
+                                <li>Optimasi SEO Dasar</li>
+                                <li>Galeri Produk Dinamis</li>
+                            </ul>
+                            <a href="kontak.html" class="btn-primary">Pesan Paket</a>
+                        </div>
+                    </article>
 
-    <ul>
-        <li>Branding dan Desain</li>
-        <li>Web Development</li>
-        <li>Transformasi Digital</li>
-        <li>Content Writing</li>
-    </ul>
+                    <!-- Paket 3: Sosmed Premium -->
+                    <article class="card pricing-card">
+                        <div class="card-body">
+                            <span class="badge">Content Creator</span>
+                            <h3 class="card-title">Sosmed Premium</h3>
+                            <p class="card-price">Rp 2.500.000</p>
+                            <ul class="card-features">
+                                <li>30 Konten Feed + Reels</li>
+                                <li>Riset Hashtag & Copywriting</li>
+                                <li>Admin Kelola Sosmed</li>
+                            </ul>
+                            <a href="kontak.html" class="btn-primary">Pesan Paket</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </main>
 
-    <p>
-        <a href="produk.html">Lihat Katalog Jasa</a>
-    </p>
-
-    <p>
-        <a href="kontak.html">Pesan Jasa Sekarang</a>
-    </p>
-
-</main>
-
-<footer>
-    <hr>
-    <p align="center">
-        &copy; 2026 Poliban DigiCraft Studio
-    </p>
-</footer>
+        <footer>
+            <hr>
+            <p align="center">
+                &copy; 2026 Poliban DigiCraft Studio
+            </p>
+        </footer>
 
 </body>
+
 </html>

@@ -1,5 +1,22 @@
+/* CSS VARIABLE */
+:root {
+    --primarycolor: brown;
+    --primary-dark: rgb(119, 31, 31);
+    --secondary-color: rgb(116, 0, 0);
+    --accent-color: rgb(53, 0, 0);
+    --bg-light: rgba(255, 255, 255, 0.25);
+    --white: white;
+    --text-muted: rgb(14, 13, 13);
+    --border-color: #e0e0e0;
+    --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.09);
+    --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.15);
+    --transition-fast: all 0.3s ease;
+    
+}
+
+
 /* 2.CSS RESET */
-*{
+* {
     margin: 20;
     padding: 20;
     box-sizing: border-box;
@@ -8,8 +25,8 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.6;
-    color: rgb(15, 15, 15);
-    background-color: white;
+    color: var(--text-muted);
+    background-color: var(--white);
 }
 
 /* LAYOUT CONTAINER */
@@ -23,8 +40,8 @@ body {
 
 /* Header & Nav */
 header {
-    background-color: brown;
-    color: white;
+    background-color: var(--primarycolor);
+    color: var(--white);
     padding: 25px 0;
     text-align: center;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 1);
@@ -42,20 +59,102 @@ header p {
 }
 
 nav {
-    margin-top:  10px;
+    margin-top: 10px;
     font-size: 0.95rem;
 }
 
 nav a {
-    color: white;
+    color: var(--white);
     text-decoration: none;
     padding: 6px 14px;
     margin: 0 2px;
     border-radius: 4px;
-    transition: all 0.3s ease;
+    transition: var(--transition-fast);
 }
 
-nav a:hover, nav a.active {
-    background-color: rgba(255, 255, 255, 0.25);
+nav a:hover,
+nav a.active {
+    background-color: var(--bg-light);
     font-weight: bold;
+}
+
+/* Main content */
+main {
+    padding: 40px 0;
+
+}
+
+.section {
+    margin-bottom: 50px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+    color: var(--text-muted);
+}
+
+/* CARD & GRID */
+.card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+}
+
+.card {
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px var(--shadow-soft);
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 300px;
+    max-width: 340px;
+    transform: var(--transition-fast);
+}
+
+.card-img {
+    width: 100%;
+    height: 190%;
+    object-fit: cover;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-soft);
+}
+
+.pricing-card {
+    aspect-ratio: 3 / 4;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-title {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+.card.text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 15px;
 }
