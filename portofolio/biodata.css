@@ -1,0 +1,240 @@
+/* Import Font Monospace & Sans-Serif agar mirip referensi */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --bg-page: #0B0E11;
+  --bg-card: #13171D;
+  --bg-card-hover: #181D24;
+  --accent-green: #43E98B;
+  --text-white: #F3F4F6;
+  --text-muted: #8B949E;
+  --border-subtle: #1F242D;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-white);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+  line-height: 1.6;
+}
+
+/* --- TOP BAR ALA REFERENSI ("PORTOFOLIO / 2026") --- */
+body::before {
+  content: "PORTOFOLIO / 2026 \00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0 [MUHAMMAD JEFFRI]";
+  display: flex;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin-bottom: 48px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* --- HERO TITLE  --- */
+h1 {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 800;
+  color: var(--accent-green);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+/* Sub-deskripsi tepat di bawah H1 */
+h1::after {
+  content: "Mahasiswa Bisnis Digital — Politeknik Negeri Banjarmasin";
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-white);
+  letter-spacing: -0.01em;
+  text-transform: none;
+  margin-top: 14px;
+  margin-bottom: 48px;
+}
+
+/* --- SECTION HEADERS  --- */
+h2 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  grid-column: 1 / -1;
+}
+
+/* Jarak antar blok utama */
+div {
+  margin-bottom: 52px;
+}
+
+/* --- BAGIAN 1: PROFIL UTAMA --- */
+div:nth-of-type(1) {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+div:nth-of-type(1) p {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+/* Label putih tebal di atas  */
+div:nth-of-type(1) p span {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-white);
+}
+
+div:nth-of-type(1) p strong {
+  font-weight: 400;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+div:nth-of-type(1) p em {
+  font-style: normal;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--accent-green);
+  font-size: 0.9rem;
+}
+
+/* --- BAGIAN 2: RIWAYAT PENDIDIKAN (Kartu Bernomor 01 - 04 ala "ALUR PENGEMBANGAN") --- */
+ol {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  counter-reset: edu-counter;
+}
+
+ol li {
+  counter-increment: edu-counter;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 22px 20px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 135px;
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+ol li:hover {
+  background-color: var(--bg-card-hover);
+  border-color: rgba(67, 233, 139, 0.4);
+  transform: translateY(-3px);
+}
+
+/* Nomor hijau kecil 01, 02, 03, 04 di bagian atas kartu */
+ol li::before {
+  content: "0" counter(edu-counter);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--accent-green);
+  margin-bottom: 14px;
+}
+
+/* Keterangan tingkat di bawah nama sekolah */
+ol li:nth-child(1)::after { content: "Pendidikan Dasar"; font-size: 0.8rem; font-weight: 400; color: var(--text-muted); margin-top: 8px; }
+ol li:nth-child(2)::after { content: "Menengah Pertama"; font-size: 0.8rem; font-weight: 400; color: var(--text-muted); margin-top: 8px; }
+ol li:nth-child(3)::after { content: "Menengah Kejuruan"; font-size: 0.8rem; font-weight: 400; color: var(--text-muted); margin-top: 8px; }
+ol li:nth-child(4)::after { content: "Pendidikan Tinggi"; font-size: 0.8rem; font-weight: 400; color: var(--accent-green); margin-top: 8px; }
+
+/* --- BAGIAN 3: HOBI / SKILL (Kartu Grid) --- */
+ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+ul li {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 20px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-white);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+ul li:hover {
+  border-color: rgba(67, 233, 139, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Tag monospace hijau kecil di bawah tiap item hobi */
+ul li::after {
+  content: "[MINAT & KEAHLIAN]";
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--accent-green);
+  letter-spacing: 0.05em;
+}
+
+/* --- FOOTER BAR BAWAH --- */
+html::after {
+  content: "E030435127  •  BISNIS DIGITAL (3E)  •  POLITEKNIK NEGERI BANJARMASIN";
+  display: block;
+  max-width: 960px;
+  margin: 0 auto 48px;
+  padding: 20px 24px 0;
+  border-top: 1px solid var(--border-subtle);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+  letter-spacing: 0.08em;
+}
+
+/* --- RESPONSIF LAYAR HP / TABLET --- */
+@media (max-width: 768px) {
+  div:nth-of-type(1),
+  ol {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  div:nth-of-type(1),
+  ol,
+  ul {
+    grid-template-columns: 1fr;
+  }
+}
